@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import chalk from "chalk";
 async function getUserAge() {
     const answers = await inquirer.prompt([
         {
@@ -27,7 +28,7 @@ async function getUserAge() {
         {
             name: "confirmation",
             type: "confirm", // input for string value
-            message: "Select Your Hobby"
+            message: "Please confirm"
         },
         {
             name: "email",
@@ -36,7 +37,8 @@ async function getUserAge() {
             choices: ["Cricket@gmail.com", "FootBall@gmail.com", "Badminton@gmail.com"],
         }
     ]);
-    console.log("Dear " + (answers.name) + ", Insha Allah, in " + (60 - answers.age) + " years you will be 60 years old. Dear, I found it quite interesting after knowing that your hobby is " + (answers.hobby) + ". Now please confirm do You want to play with me? " + (answers.confirmation ? "Yes, I" : "No, I don't") + " want to play. Ok confirm your email. My email is " + (answers.email));
+    // console.log(`${chalk.bold(chalk.green(`Dear ${answers.name}`), chalk.blue(`Your age is ${answers.age}`))}`)
+    console.log(`${chalk.bold(`${chalk.green(`Dear ${answers.name},\n`)}${chalk.blue(`Your age is ${answers.age}\n`)}${chalk.bgMagenta(`Your hobby is ${answers.hobby}\n`)}${chalk.cyanBright(`Really? ${answers.confirmation ? "Yes" : "No"}\n`)}${chalk.blueBright(`Alright! Your email is ${answers.email}\n`)}`)}`);
 }
 getUserAge();
 // --------------------------------------- OR ------------------------------------------
